@@ -1,0 +1,188 @@
+#!/bin/bash
+#Hacer ping a servidores con un arrays
+
+function hacer_ping() {
+
+ ping -c1 "${serv[*]}" >/dev/null
+
+}
+
+
+
+##########################################################
+clear
+serv=('172.31.32.1' '172.31.32.2' '172.31.32.6' '172.31.46.254' '172.31.37.200' '172.31.37.212') 
+serv2=('172.31.32.3' '172.31.32.4')
+dells=('172.31.37.210' '172.31.37.206' '172.31.37.208')
+person=('172.31.41.2' '172.31.41.7' '172.31.41.16')   
+ 
+hacer_ping "${serv[0]}" 
+
+if  [[ $? != 0 ]];  
+
+        then 
+		 echo -e "\e[31m${serv[0]} El Servidor    esta Abajo\e[0m"
+
+	else
+		 echo -e "\e[32mEl Servidor ${serv[0]}   ok\e[0m"
+
+	fi
+
+hacer_ping "${serv[1]}"
+if  [[ $? != 0 ]];  
+
+        then 
+
+		 echo -e "\e[31m${serv[1]} El Servidor   esta Abajo\e[0m"
+
+	else
+	 
+		 echo -e "\e[32mEl Servidor ${serv[1]}   ok\e[0m"
+	fi
+
+
+hacer_ping "${serv[2]}"
+if  [[ $? != 0 ]];  
+
+        then 
+
+		 echo -e "\e[31m${serv[2]} El Servidor    esta Abajo\e[0m"
+
+	else
+	 
+		 echo -e "\e[32mEl Servidor ${serv[2]}   ok\e[0m"
+	fi
+
+hacer_ping "${serv[3]}"
+if  [[ $? != 0 ]];  
+
+        then 
+
+		 echo -e "\e[31m${serv[3]} El Servidor esta Abajo\e[0m"
+
+	else
+	 
+		 echo -e "\e[32mEl Servidor ${serv[3]} ok\e[0m"
+	fi
+
+hacer_ping "${serv[4]}"
+if  [[ $? != 0 ]];  
+
+        then 
+
+		 echo -e "\e[31m${serv[4]} El Servidor esta Abajo\e[0m"
+
+	else
+	 
+		 echo -e "\e[32mEl Servidor ${serv[4]} ok\e[0m"
+	fi
+
+hacer_ping "${serv[5]}"
+if  [[ $? != 0 ]];  
+
+        then 
+
+		 echo -e "\e[31m${serv[5]} El Servidor esta Abajo\e[0m"
+
+	else
+	 
+		 echo -e "\e[32mEl Servidor ${serv[5]} ok\e[0m"
+	fi
+
+hacer_ping "${serv2[0]}"
+if  [[ $? != 0 ]];  
+
+        then 
+
+		 echo -e "\e[31m${serv2[0]} El Servidor esta Abajo\e[0m"
+
+	else
+	 
+		 echo -e "\e[32mEl Servidor ${serv2[0]}   ok\e[0m"
+	fi
+
+hacer_ping "${serv2[1]}"
+if  [[ $? != 0 ]];  
+
+        then 
+
+		 echo -e "\e[31m${serv2[1]} El Servidor esta Abajo\e[0m"
+
+	else
+	 
+		 echo -e "\e[32mEl Servidor ${serv2[1]}   ok\e[0m"
+	fi
+
+hacer_ping "${dells[0]}"
+if  [[ $? != 0 ]];  
+
+        then 
+
+		 echo -e "\e[31m${dells[0]} El Servidor esta Abajo\e[0m"
+
+	else
+	 
+		  echo -e "\e[32mEl Servidor ${dells[0]} ok\e[0m"
+	fi
+
+hacer_ping "${dells[1]}"
+if  [[ $? != 0 ]];  
+
+        then 
+
+		 echo -e "\e[31m${dells[1]} El Servidor esta Abajo\e[0m"
+
+	else
+	 
+		  echo -e "\e[32mEl Servidor ${dells[1]} ok\e[0m"
+	fi
+
+hacer_ping "${dells[2]}"
+if  [[ $? != 0 ]];  
+
+        then 
+
+		 echo -e "\e[31m${dells[2]} El Servidor esta Abajo\e[0m"
+
+	else
+	 
+		  echo -e "\e[32mEl Servidor ${dells[2]} ok\e[0m"
+	fi
+
+hacer_ping "${person[0]}"
+if  [[ $? != 0 ]];  
+
+        then 
+
+		 echo -e "\e[31m${person[0]} El Servidor esta Abajo\e[0m"
+
+	else
+	 
+		  echo -e "\e[32mEl Servidor ${person[0]}   ok\e[0m"
+	fi
+
+hacer_ping "${person[1]}"
+if  [[ $? != 0 ]];  
+
+        then 
+
+		 echo -e "\e[31m${person[1]} El Servidor esta Abajo\e[0m"
+
+	else
+	 
+		  echo -e "\e[32mEl Servidor ${person[1]}   ok\e[0m"
+	fi
+
+hacer_ping "${person[2]}"
+if  [[ $? != 0 ]];  
+
+        then 
+
+		 echo -e "\e[31m${person[2]} El Servidor esta Abajo\e[0m"
+
+	else
+	 
+		 echo -e "\e[32mEl Servidor ${person[2]}  ok\e[0m"
+	fi
+
+
