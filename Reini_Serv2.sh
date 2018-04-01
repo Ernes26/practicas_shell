@@ -65,13 +65,17 @@ then
 clear
 while :
 do
+cat <<-EOF
 echo " Escoja una opcion "
 echo "1. Reiniciar solo servicio DHCP"
 echo "2. Reiniciar el servidor Proxy"
 echo "3. Reiniciar el Firewall"
 echo "4. Salir"
 echo -n "Seleccione una opcion [1 - 4]"
+EOF
+
 read opcion
+
 case $opcion in
 1) echo "Reiniciando Servidor DHCP:";
  REINICIAR_DHCP;;        
