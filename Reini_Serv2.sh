@@ -9,35 +9,62 @@
 #Reiniciar los Servicios de Forma mas rapida.
 ##############################
 
+
+#DECLARACION DE VARIABLES
+
+NORMAL=$(tput sgr0)
+VERDE=$(tput setaf 2; tput bold)
+AMARILLO=$(tput setaf 3)
+ROJO=$(tput setaf 1)
+AZUL=$(tput setaf 4)
+BLACK=$(tput setaf 0)
+MAGENTA=$(tput setaf 5)
+CYAN=$(tput setaf 6)
+WHITE=$(tput setaf 7)
+DHCP="/etc/init.d/isc-dhcp-server restart"
+
 #FUNCIONES Y PROCEDIMIENTOS
+function rojo() {
+    echo -e "$ROJO$*$NORMAL"
+}
+
+function verde() {
+    echo -e "$VERDE$*$NORMAL"
+}
+
+function amarillo() {
+    echo -e "$AMARILLO$*$NORMAL"
+}
 
 
 REINICIAR_DHCP() {
 
-echo "Reiniciando Servidor DHCP:";
-/etc/init.d/isc-dhcp-server restar;;
-
+ amarillo "Reiniciando Servidor DHCP:"
+#/etc/init.d/isc-dhcp-server restar
+$DHCP
 if  [[ $? != 0 ]]; #Comprueba si el servicio va bien
 then 
-		echo "El servicio fallo algo quedo mal"
+		rojo "El servicio fallo algo quedo mal"
 
 	else
-		echo "El servicio va correctamente"
+		verde "El servicio va correctamente"
 
 	fi
 }
 ############################################################
 REINICIAR_PROXY() {
 
-/etc/init.d/isc-dhcp-server restar;;
-squidGuard -C all ; squid3 -k reconfigure;;
+ amarillo "Reiniciando Servidor DHCP:"
+ amarillo "Reiniciando squid3"
+/etc/init.d/isc-dhcp-server restart
+squidGuard -C all ; squid3 -k reconfigure
 
 if  [[ $? != 0 ]];
 then 
-		echo "El servicio fallo algo quedo mal"
+		rojo "El servicio fallo algo quedo mal"
 
 	else
-		echo "El servicio va correctamente"
+		verde "El servicio va correctamente"
 
 	fi
 	
@@ -46,16 +73,16 @@ then
 
 REINICIAR_firewall() {
 
-echo "reiniciar el Servicio Firewall:";
-/etc/init.d/isc-dhcp-server restar;;
-shorewall restart;;
+ amarillo "Reiniciando SHOREWALL"
+$DHCP
+shorewall restart
 
 if  [[ $? != 0 ]];
 then 
-		echo "El servicio fallo algo quedo mal"
+		rojo "El servicio fallo algo quedo mal"
 
 	else
-		echo "El servicio va correctamente"
+		verde "El servicio va correctamente"
 
 	
 	fi
@@ -63,16 +90,16 @@ then
 ############################################################
 
 clear
+echo "***********ESCOJA UNA DE LAS SIGUIENTES OPCIONES*********"
+echo
 while :
 do
-cat <<-EOF
 echo " Escoja una opcion "
 echo "1. Reiniciar solo servicio DHCP"
 echo "2. Reiniciar el servidor Proxy"
 echo "3. Reiniciar el Firewall"
 echo "4. Salir"
 echo -n "Seleccione una opcion [1 - 4]"
-EOF
 
 read opcion
 
