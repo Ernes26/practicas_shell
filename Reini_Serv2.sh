@@ -22,7 +22,8 @@ MAGENTA=$(tput setaf 5)
 CYAN=$(tput setaf 6)
 WHITE=$(tput setaf 7)
 DHCP="/etc/init.d/isc-dhcp-server restart"
-
+SQUID={squidGuard -C all ; squid3 -k reconfigure}
+SHOR="shorewall restart"
 #FUNCIONES Y PROCEDIMIENTOS
 function rojo() {
     echo -e "$ROJO$*$NORMAL"
@@ -56,9 +57,8 @@ REINICIAR_PROXY() {
 
  amarillo "Reiniciando Servidor DHCP:"
  amarillo "Reiniciando squid3"
-/etc/init.d/isc-dhcp-server restart
-squidGuard -C all ; squid3 -k reconfigure
-
+$DHCP
+$SQUID
 if  [[ $? != 0 ]];
 then 
 		rojo "El servicio fallo algo quedo mal"
@@ -73,9 +73,9 @@ then
 
 REINICIAR_firewall() {
 
- amarillo "Reiniciando SHOREWALL"
+ amarillo "REINICIAR SHOREWALL"
 $DHCP
-shorewall restart
+$SHOR
 
 if  [[ $? != 0 ]];
 then 
