@@ -1,0 +1,173 @@
+#!/bin/bash
+##############################
+#Elaborado por: Ernesto Curvelo.
+#Titulo: Verificacion de Servicios del Servidor
+#Version: 1.0
+##############################
+##############################
+#Objetivo:
+#Verificar el funcionamiento de los Servicios de forma rapida
+##############################
+#DECLARACION DE VARIABLES
+
+NORMAL=$(tput sgr0)
+VERDE=$(tput setaf 2; tput bold)
+AMARILLO=$(tput setaf 3)
+ROJO=$(tput setaf 1)
+AZUL=$(tput setaf 4)
+BLACK=$(tput setaf 0)
+MAGENTA=$(tput setaf 5)
+CYAN=$(tput setaf 6) 
+WHITE=$(tput setaf 7)
+DHCP="/etc/init.d/isc-dhcp-server restart"
+
+
+
+
+
+#FUNCIONES Y PROCEDIMIENTOS
+
+
+function rojo() {
+    echo -e "$ROJO$*$NORMAL"
+}
+
+function verde() {
+    echo -e "$VERDE$*$NORMAL"
+}
+
+function amarillo() {
+    echo -e "$AMARILLO$*$NORMAL"
+}
+
+
+
+
+VERIFICAR_DHCP() {
+
+ amarillo "Verificando servicio DHCP:"
+/etc/init.d/isc-dhcp-server status
+
+if  [[ $? != 0 ]]; #Comprueba si el servicio va bien
+then 
+	
+
+		rojo "El servicio fallo algo quedo mal"
+
+	else
+
+         	verde	 "El servicio va correctamente"
+echo
+	fi
+}
+############################################################
+VERIFICAR_PROXY() {
+
+ amarillo "Verificando Squid3:"
+/etc/init.d/squid3 status
+
+if  [[ $? != 0 ]];
+then 
+         	rojo "El servicio fallo algo quedo mal"
+
+
+	else
+	         verde "El servicio va correctamente"
+echo
+	fi
+	
+}
+############################################################
+
+VERIFICAR_FIREWALL() {
+
+amarillo "Verificando el Servicio Firewall:"
+shorewall status
+
+if  [[ $? != 0 ]];
+then 
+
+         	rojo "El servicio fallo algo quedo mal"
+	else
+
+	         verde "El servicio va correctamente"
+echo	
+	fi
+}
+############################################################
+VERIFICAR_VPN() {
+
+amarillo "Verificando el Servicio de vpn:"
+/etc/init.d/openvpn status
+
+if  [[ $? != 0 ]];
+then 
+
+         	rojo "El servicio fallo algo quedo mal"
+	else
+
+	         verde "El servicio va correctamente"
+echo	
+	fi
+}
+
+###############################################################
+
+
+VERIFICAR_DNS() {
+
+amarillo "Verificando el Servicio de dns:"
+/etc/init.d/bind9 status
+
+if  [[ $? != 0 ]];
+then 
+
+         	rojo "El servicio fallo algo quedo mal"
+	else
+
+	         verde "El servicio va correctamente"
+echo	
+	fi
+}
+
+
+clear
+
+
+echo "***********ESCOJA UNA DE LAS SIGUIENTES OPCIONES*********"
+echo
+while :
+do
+echo " Escoja una opcion "
+echo "1. VERIFICAR SOLO SERVICIO DHCP"
+echo "2. VERIFICAR EL SERVICIO PROXY"
+echo "3. VERIFICAR EL FIREWALL"
+echo "4. VERIFICAR EL VPN"
+echo "5. VERIFICAR EL DNS"
+echo "6. SALIR"
+echo -n "SELECCIONE UNA OPCION [1 - 6]"
+
+read opcion
+
+case $opcion in
+1) echo "Verificando Servidor DHCP:";
+ VERIFICAR_DHCP;;        
+
+2) echo "Verificando proxy:";
+ VERIFICAR_PROXY;;
+
+3) echo "Verificando firewall:";
+ VERIFICAR_FIREWALL;;
+
+4) echo "Verificando firewall:";
+ VERIFICAR_VPN;;
+
+5) echo "Verificando firewall:";
+ VERIFICAR_DNS;;
+
+6) echo "salir:";
+  exit 1;;
+*) echo "$opc no es una opcion válida.";
+read foo;;
+esac
+done
