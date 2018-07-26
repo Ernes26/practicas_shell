@@ -27,7 +27,7 @@ DHCP="/etc/init.d/isc-dhcp-server restart"
 
 #FUNCIONES Y PROCEDIMIENTOS
 
-
+##################################FUINCION DE LOS COLORES#################
 function rojo() {
     echo -e "$ROJO$*$NORMAL"
 }
@@ -41,7 +41,7 @@ function amarillo() {
 }
 
 
-
+################################# FUNCIONES DE LOS SERVICIOS###############
 
 VERIFICAR_DHCP() {
 
@@ -113,7 +113,6 @@ echo
 
 ###############################################################
 
-
 VERIFICAR_DNS() {
 
 amarillo "Verificando el Servicio de dns:"
@@ -133,7 +132,7 @@ echo
 
 clear
 
-
+#############################MENUS DEL SCRIPT#####################
 echo "***********ESCOJA UNA DE LAS SIGUIENTES OPCIONES*********"
 echo
 while :
@@ -159,10 +158,10 @@ case $opcion in
 3) echo "Verificando firewall:";
  VERIFICAR_FIREWALL;;
 
-4) echo "Verificando firewall:";
+4) echo "Verificando vpn:";
  VERIFICAR_VPN;;
 
-5) echo "Verificando firewall:";
+5) echo "Verificando dns:";
  VERIFICAR_DNS;;
 
 6) echo "salir:";
