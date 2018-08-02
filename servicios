@@ -19,7 +19,6 @@ BLACK=$(tput setaf 0)
 MAGENTA=$(tput setaf 5)
 CYAN=$(tput setaf 6) 
 WHITE=$(tput setaf 7)
-DHCP="/etc/init.d/isc-dhcp-server restart"
 
 
 
